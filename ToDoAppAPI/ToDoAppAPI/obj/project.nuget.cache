@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wjZwkn+w/FiBui1UVeuTBhzfD15n3uj+ObNqVAQNyTmvtTHbwQoSeJhqU9XJViGfjziMtoDiJsNsgzxRhHxdww==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lucaw\\OneDrive - HTL Saalfelden\\2022-2023_HTL_4-Klasse\\POS\\API_Semesterprojekt\\API-Projekt\\TODO-API\\ToDoAppAPI\\ToDoAppAPI\\ToDoAppAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucaw\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

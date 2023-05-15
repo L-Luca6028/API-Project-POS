@@ -1,0 +1,36 @@
+﻿<Window x:Class="ToDoAppAPI.WindowAddData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoAppAPI"
+        mc:Ignorable="d"
+        Title="WindowAddData" Height="375" Width="550">
+    <Grid x:Name="WindowAdd" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="labl1" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Welche Priorität hat ihr Vorhaben?</Label>
+        <Label x:Name="labl2" Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Was müssen Sie erledigen?</Label>
+        <Label x:Name="labl3" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Zusätzliche Informationen?</Label>
+        <Label x:Name="labl4" Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Wann müssen Sie fertig sein?</Label>
+
+        <TextBox x:Name="priBox" Grid.Column="1" Grid.Row="0"></TextBox>
+        <TextBox x:Name="wtdBox" Grid.Column="1" Grid.Row="1"></TextBox>
+        <TextBox x:Name="disBox" Grid.Column="1" Grid.Row="2"></TextBox>
+        <TextBox x:Name="deadBox" Grid.Column="1" Grid.Row="3"></TextBox>
+
+        <Button x:Name="pushBtn" Grid.Column="1" Grid.Row="4" Click="pushBtn_Click" IsEnabled="True">Daten in Liste hinzufügen</Button>
+        
+    </Grid>
+</Window>
