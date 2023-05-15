@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fc6b6d21-3e84-476f-b242-e4a012b8eae4" name="Changes" comment="First">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/accessingmongodbdatarest/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/accessingmongodbdatarest/ToDo.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2MBsD0oY2nWBj8gf5jKbtUmYe8p" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RunManager">
+    <configuration name="AccessingMongodbDataRestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="complete" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.accessingmongodbdatarest.AccessingMongodbDataRestApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fc6b6d21-3e84-476f-b242-e4a012b8eae4" name="Changes" comment="" />
+      <created>1677252189799</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677252189799</updated>
+      <workItem from="1677252191532" duration="1104000" />
+      <workItem from="1677570410982" duration="11117000" />
+      <workItem from="1677587623647" duration="1587000" />
+      <workItem from="1678110735987" duration="69000" />
+      <workItem from="1678358528721" duration="716000" />
+      <workItem from="1678359284728" duration="1385000" />
+      <workItem from="1678461579961" duration="1511000" />
+      <workItem from="1678786662756" duration="3900000" />
+      <workItem from="1679060211342" duration="977000" />
+      <workItem from="1679390163345" duration="3283000" />
+      <workItem from="1679992750157" duration="2472000" />
+      <workItem from="1680002533785" duration="3047000" />
+      <workItem from="1680163186221" duration="1646000" />
+      <workItem from="1681804877285" duration="4274000" />
+      <workItem from="1681817416142" duration="937000" />
+      <workItem from="1681983425159" duration="633000" />
+      <workItem from="1681998496757" duration="1099000" />
+      <workItem from="1682066587588" duration="1205000" />
+      <workItem from="1682574658570" duration="282000" />
+      <workItem from="1682575007008" duration="1406000" />
+      <workItem from="1683010058368" duration="2608000" />
+      <workItem from="1683229017797" duration="362000" />
+      <workItem from="1683229782000" duration="2195000" />
+      <workItem from="1683622682663" duration="1050000" />
+      <workItem from="1683625251949" duration="1740000" />
+      <workItem from="1684089478338" duration="177000" />
+    </task>
+    <task id="LOCAL-00001" summary="First">
+      <created>1682575497286</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682575497287</updated>
+    </task>
+    <task id="LOCAL-00002" summary="First">
+      <created>1683235477311</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683235477311</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="First" />
+    <option name="LAST_COMMIT_MESSAGE" value="First" />
+  </component>
+</project>
