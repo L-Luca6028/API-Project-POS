@@ -23,3 +23,28 @@ C:\Users\lucaw\OneDrive - HTL Saalfelden\2022-2023_HTL_4-Klasse\POS\API_Semester
 C:\Users\lucaw\OneDrive - HTL Saalfelden\2022-2023_HTL_4-Klasse\POS\API_Semesterprojekt\API-Projekt\TODO-API\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.csproj.CopyComplete
 C:\Users\lucaw\OneDrive - HTL Saalfelden\2022-2023_HTL_4-Klasse\POS\API_Semesterprojekt\API-Projekt\TODO-API\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\WindowAddData.g.cs
 C:\Users\lucaw\OneDrive - HTL Saalfelden\2022-2023_HTL_4-Klasse\POS\API_Semesterprojekt\API-Projekt\TODO-API\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\WindowAddData.baml
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\bin\Debug\net6.0-windows\ToDoAppAPI.exe
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\bin\Debug\net6.0-windows\ToDoAppAPI.deps.json
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\bin\Debug\net6.0-windows\ToDoAppAPI.runtimeconfig.json
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\bin\Debug\net6.0-windows\ToDoAppAPI.dll
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\bin\Debug\net6.0-windows\ToDoAppAPI.pdb
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.csproj.AssemblyReference.cache
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\WindowAddData.g.cs
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI_MarkupCompile.cache
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI_MarkupCompile.lref
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\WindowAddData.baml
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.g.resources
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.AssemblyInfoInputs.cache
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.AssemblyInfo.cs
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.csproj.CoreCompileInputs.cache
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.csproj.CopyComplete
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.dll
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\refint\ToDoAppAPI.dll
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.pdb
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ToDoAppAPI.genruntimeconfig.cache
+C:\Users\lucaw\OneDrive\Dokumente\GitHub\API-Project-POS\ToDoAppAPI\ToDoAppAPI\obj\Debug\net6.0-windows\ref\ToDoAppAPI.dll

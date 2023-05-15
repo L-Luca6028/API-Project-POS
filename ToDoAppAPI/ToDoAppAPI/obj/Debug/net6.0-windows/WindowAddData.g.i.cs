@@ -133,7 +133,7 @@ namespace ToDoAppAPI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ToDoAppAPI;V1.0.0.0;component/windowadddata.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ToDoAppAPI;component/windowadddata.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\WindowAddData.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

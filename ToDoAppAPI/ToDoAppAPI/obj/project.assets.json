@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lucaw\\OneDrive - HTL Saalfelden\\2022-2023_HTL_4-Klasse\\POS\\API_Semesterprojekt\\API-Projekt\\TODO-API\\ToDoAppAPI\\ToDoAppAPI\\ToDoAppAPI.csproj",
+      "projectUniqueName": "C:\\Users\\lucaw\\OneDrive\\Dokumente\\GitHub\\API-Project-POS\\ToDoAppAPI\\ToDoAppAPI\\ToDoAppAPI.csproj",
       "projectName": "ToDoAppAPI",
-      "projectPath": "C:\\Users\\lucaw\\OneDrive - HTL Saalfelden\\2022-2023_HTL_4-Klasse\\POS\\API_Semesterprojekt\\API-Projekt\\TODO-API\\ToDoAppAPI\\ToDoAppAPI\\ToDoAppAPI.csproj",
+      "projectPath": "C:\\Users\\lucaw\\OneDrive\\Dokumente\\GitHub\\API-Project-POS\\ToDoAppAPI\\ToDoAppAPI\\ToDoAppAPI.csproj",
       "packagesPath": "C:\\Users\\lucaw\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lucaw\\OneDrive - HTL Saalfelden\\2022-2023_HTL_4-Klasse\\POS\\API_Semesterprojekt\\API-Projekt\\TODO-API\\ToDoAppAPI\\ToDoAppAPI\\obj\\",
+      "outputPath": "C:\\Users\\lucaw\\OneDrive\\Dokumente\\GitHub\\API-Project-POS\\ToDoAppAPI\\ToDoAppAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lucaw\\AppData\\Roaming\\NuGet\\NuGet.Config",
