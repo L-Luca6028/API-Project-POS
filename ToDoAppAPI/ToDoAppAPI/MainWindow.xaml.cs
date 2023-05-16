@@ -64,6 +64,10 @@ namespace ToDoAppAPI
                     TbDes.Text = elem.Description;
                     TbDate.Text = elem.DeadlineDate;
                     PutData.IsEnabled = true;
+                    TbPri.IsEnabled = true;
+                    TbWtd.IsEnabled = true;
+                    TbDes.IsEnabled = true;
+                    TbDate.IsEnabled = true;
                 }
             }
         }
@@ -85,6 +89,7 @@ namespace ToDoAppAPI
                     string toDoToJson = JsonConvert.SerializeObject(elem);                                  // In JSON-Objekt umwandeln      
                     StringContent httpContent = new StringContent(toDoToJson, Encoding.UTF8, "application/json"); //den String der den UTF8 Zeichen entspricht mit dem Header "application/json" in ein String Content speichern
                     var response = await httpClient.PutAsync($"http://localhost:8080/ToDos/{elem.Id}", httpContent); // Die PUT-Methode ausführen
+
                 }
             }
 
@@ -126,5 +131,15 @@ namespace ToDoAppAPI
             
         }
 
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            ToDoList.Items.Clear();
+
+            foreach (ToDo elem in toDo)
+            {
+                ToDoList.Items.Add(elem.WhatToDo);
+            }
+
+        }
     }
 }

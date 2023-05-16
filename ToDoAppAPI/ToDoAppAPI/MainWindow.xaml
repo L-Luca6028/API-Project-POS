@@ -21,14 +21,15 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Button x:Name="RefreshButton" Click="RefreshButton_Click" Grid.Column="1">Daten aktualisieren</Button>
         <Button x:Name="AddData" Click="AddData_Click">ToDo hinzufügen</Button>
         <Button x:Name="DeleteData" Click="DeleteData_Click" Grid.Column="0" Grid.Row="5">Löschen eines ToDos</Button>
         <Button x:Name="PutData" Click="PutData_Click" Grid.Column="1" Grid.Row="5" IsEnabled="False">Änderung speichern</Button>
         <ListBox x:Name="ToDoList" Grid.Row="1" Grid.RowSpan="4" MouseDoubleClick="ToDoList_MouseDoubleClick"></ListBox>
-        <TextBox x:Name="TbPri" Grid.Row="1" Grid.Column="1"></TextBox>
-        <TextBox x:Name="TbWtd" Grid.Row="2" Grid.Column="1"></TextBox>
-        <TextBox x:Name="TbDes" Grid.Row="3" Grid.Column="1"></TextBox>
-        <TextBox x:Name="TbDate" Grid.Row="4" Grid.Column="1"></TextBox>
+        <TextBox x:Name="TbPri" Grid.Row="1" Grid.Column="1" IsEnabled="False"></TextBox>
+        <TextBox x:Name="TbWtd" Grid.Row="2" Grid.Column="1" IsEnabled="False"></TextBox>
+        <TextBox x:Name="TbDes" Grid.Row="3" Grid.Column="1" IsEnabled="False"></TextBox>
+        <TextBox x:Name="TbDate" Grid.Row="4" Grid.Column="1" IsEnabled="False"></TextBox>
 
     </Grid>
 </Window>
