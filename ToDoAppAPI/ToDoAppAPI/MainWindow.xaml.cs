@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,18 +25,24 @@ namespace ToDoAppAPI
    
     public partial class MainWindow : Window
     {
+        HttpClient httpClient = new HttpClient();
 
         // Die Get-Methode, Der Client und der data-String sind static, da sich diese beiden Varialen nie ändern
         // Außerdem sind die folgenden drei Zeilen globale VAriablen und somit kann man mit der Put und Delete Funktion
         // darauf zugreifen
-        static HttpClient httpClient = new HttpClient();
-        static string data = httpClient.GetStringAsync("http://localhost:8080/ToDos/all").Result;   // Ich hole mir die URL von der API, die ich haben will
-        ToDo[] toDo = JsonConvert.DeserializeObject<ToDo[]>(data);      // Das JSON-Objekt in ein .Net-Objekt umwandeln
+        private ToDo[] getApiContent()
+        {
+            string data = httpClient.GetStringAsync("http://localhost:8080/ToDos/all").Result;   // Ich hole mir die URL von der API, die ich haben will
+            ToDo[] toDo = JsonConvert.DeserializeObject<ToDo[]>(data);      // Das JSON-Objekt in ein .Net-Objekt umwandeln
 
+            return toDo;
+        }
+        
         public MainWindow()
         {
             InitializeComponent();
-
+     
+            ToDo[] toDo = getApiContent();
             // Das Alle Elemente in der API in der Liste angezeigt werden
             foreach (ToDo elem in toDo)
             {
@@ -47,13 +54,16 @@ namespace ToDoAppAPI
         private void AddData_Click(object sender, RoutedEventArgs e)
         {
             // Hier das WindowAddData "verlinken"
+            ToDoList.Items.Clear();
             WindowAddData windowAddData = new WindowAddData();
             windowAddData.Show();
+            this.Close();
         }
 
         
         private void ToDoList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {      
+        {
+            ToDo[] toDo = getApiContent();
             foreach (ToDo elem in toDo)
             {
                 if(ToDoList.SelectedItem.Equals(elem.WhatToDo))  // Wenn das ausgewählte Item in der Liste dem WhatToDo von dem Objekt entspricht
@@ -64,6 +74,7 @@ namespace ToDoAppAPI
                     TbDes.Text = elem.Description;
                     TbDate.Text = elem.DeadlineDate;
                     PutData.IsEnabled = true;
+                    DeleteData.IsEnabled = true;
                     TbPri.IsEnabled = true;
                     TbWtd.IsEnabled = true;
                     TbDes.IsEnabled = true;
@@ -75,6 +86,7 @@ namespace ToDoAppAPI
         // Die Put-Methode
         private async void PutData_Click(object sender, RoutedEventArgs e)
         {
+            ToDo[] toDo = getApiContent();
             foreach (ToDo elem in toDo)
             {
                 if (ToDoList.SelectedItem.Equals(elem.WhatToDo))
@@ -110,6 +122,7 @@ namespace ToDoAppAPI
         // Die Delete-Methode
         private async void DeleteData_Click(object sender, RoutedEventArgs e)
         {
+            ToDo[] toDo = getApiContent();
             foreach (ToDo elem in toDo)
             {
                 if (ToDoList.SelectedItem.Equals(elem.WhatToDo))
@@ -121,25 +134,17 @@ namespace ToDoAppAPI
                         using var response = httpClient.DeleteAsync($"http://localhost:8080/ToDos/{elem.Id}");
                         
                     }
-                    catch (System.InvalidOperationException ex)
+                    catch (Exception ex)
                     {
                         Console.Error.WriteLine($"Die Exception: {ex} wurde gefangen");
                         ToDoList.Items.Remove(ToDoList.SelectedItem);   // Das Entfernen der Objekt aus der Liste in dem GUI
+                        TbPri.Clear();
+                        TbWtd.Clear();
+                        TbDes.Clear();
+                        TbDate.Clear();
                     }
                 }
             }
-            
-        }
-
-        private void RefreshButton_Click(object sender, RoutedEventArgs e)
-        {
-            ToDoList.Items.Clear();
-
-            foreach (ToDo elem in toDo)
-            {
-                ToDoList.Items.Add(elem.WhatToDo);
-            }
-
         }
     }
 }

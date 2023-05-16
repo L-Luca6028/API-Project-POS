@@ -8,7 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="todo.png" />
+    <None Remove="ziele.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ziele.png" />
   </ItemGroup>
 
 </Project>

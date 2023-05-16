@@ -32,24 +32,73 @@ namespace ToDoAppAPI
         private async void pushBtn_Click(object sender, RoutedEventArgs e)
         {
             HttpClient client = new HttpClient();
+            ToDo newToDo = new ToDo();       
 
-            // Dem neuen Objekt werden die Eigenschaften aus den Textfeldern hinzugefügt
-            ToDo newToDo = new ToDo();
-            newToDo.Priority = int.Parse(priBox.Text);
-            newToDo.WhatToDo = wtdBox.Text;
-            newToDo.Description = disBox.Text;
-            newToDo.DeadlineDate = deadBox.Text;
-            //newToDo.Finished = false;             // nicht notwendig da "finished" von Anfang an false ist
-
-            string toDoToJson = JsonConvert.SerializeObject(newToDo);                                  // In JSON-Objekt umwandeln      
-            StringContent httpContent = new StringContent(toDoToJson, Encoding.UTF8, "application/json");   // den String der den UTF8 Zeichen entspricht mit dem Header "application/json" in ein String Content speichern
-            var response = await client.PostAsync("http://localhost:8080/ToDos/save", httpContent);         // In die API Posten - POST-Methode ausführen
-
-            priBox.Clear();
-            wtdBox.Clear();
-            disBox.Clear();
-            deadBox.Clear();
+            // Den try-catch-Block benötigt man um die Exception zu fangen, die bei einer falschen Eingabe von der Priorotät ausgelöst wird
+            try
+            {
+                // Dem neuen Objekt werden die Eigenschaften aus den Textfeldern hinzugefügt
+                newToDo.Priority = int.Parse(priBox.Text);
+                newToDo.WhatToDo = wtdBox.Text;
+                newToDo.Description = disBox.Text;
+                newToDo.DeadlineDate = deadBox.Text;
+                //newToDo.Finished = false;             // nicht notwendig da "finished" von Anfang an false ist
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Die Exception: {ex} wurde gefangen");
+                getMessageBoxes(1);
+                newToDo.Priority = 1;
+                newToDo.WhatToDo = wtdBox.Text;
+                newToDo.Description = disBox.Text;
+                newToDo.DeadlineDate = deadBox.Text;
+            }
             
+            // Prüfen der richtigen Eingabe
+            if (priBox.Text.Equals("") || wtdBox.Text.Equals("") || deadBox.Text.Equals(""))
+            {
+                getMessageBoxes(0);
+            }
+            else
+            {   
+                string toDoToJson = JsonConvert.SerializeObject(newToDo);                                  // In JSON-Objekt umwandeln      
+                StringContent httpContent = new StringContent(toDoToJson, Encoding.UTF8, "application/json");   // den String der den UTF8 Zeichen entspricht mit dem Header "application/json" in ein String Content speichern
+                var response = await client.PostAsync("http://localhost:8080/ToDos/save", httpContent);         // In die API Posten - POST-Methode ausführen
+
+                priBox.Clear();
+                wtdBox.Clear();
+                disBox.Clear();
+                deadBox.Clear();
+
+                // das Main fenster wieder starten
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+            
+        }
+
+        // Funktione für verschiedene MessageBoxes
+        public void getMessageBoxes(int i)
+        {
+            if (i == 0)
+            {
+                string messageBoxText = "Ein notwendiges Feld wurde nicht ausgefüllt!";
+                string caption = "Eingabe Fehler!";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
+            else if (i == 1)
+            {
+                string messageBoxText = "Keine Priorität angegeben! Priorität wurde automatisch auf 1 gesetzt!";
+                string caption = "Eingabe Fehler!";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
         }
 
     }

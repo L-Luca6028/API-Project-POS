@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoAppAPI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ToDo-Liste" Height="450" Width="800" Icon="ziele.png">
+
     <Grid x:Name="mainGrid" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -21,9 +22,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="RefreshButton" Click="RefreshButton_Click" Grid.Column="1">Daten aktualisieren</Button>
         <Button x:Name="AddData" Click="AddData_Click">ToDo hinzufügen</Button>
-        <Button x:Name="DeleteData" Click="DeleteData_Click" Grid.Column="0" Grid.Row="5">Löschen eines ToDos</Button>
+        <Button x:Name="DeleteData" Click="DeleteData_Click" Grid.Column="0" Grid.Row="5" IsEnabled="False">Löschen eines ToDos</Button>
         <Button x:Name="PutData" Click="PutData_Click" Grid.Column="1" Grid.Row="5" IsEnabled="False">Änderung speichern</Button>
         <ListBox x:Name="ToDoList" Grid.Row="1" Grid.RowSpan="4" MouseDoubleClick="ToDoList_MouseDoubleClick"></ListBox>
         <TextBox x:Name="TbPri" Grid.Row="1" Grid.Column="1" IsEnabled="False"></TextBox>
