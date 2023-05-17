@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:3000")    // Damit kein Cross-Origin Header-Fehler im Browser ausgelöst wird. Den Port der React-App angeben also 3000
 public class ToDoController {
 
     // Für das Aufrufen von den Funktionen vom Repository
