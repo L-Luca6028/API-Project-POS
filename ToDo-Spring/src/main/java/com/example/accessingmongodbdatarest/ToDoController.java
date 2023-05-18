@@ -3,6 +3,7 @@ package com.example.accessingmongodbdatarest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("http://localhost:3000")    // Damit kein Cross-Origin Header-Fehler im Browser ausgelöst wird. Den Port der React-App angeben also 3000
@@ -20,6 +21,13 @@ public class ToDoController {
     List<ToDo> all() {
         System.out.println("Super es funktioniert!!!");
         return repository.findAll();
+    }
+
+    // Es soll nur der Datensatz mit dem mitgegebenen Namen angezeigt werden
+    @RequestMapping("/ToDos/find/{id}")
+    Optional<ToDo> findToDoById(@PathVariable String id) {
+        //System.out.println("Super es funktioniert!!!");
+        return repository.findById(id);
     }
 
     // Es soll nur der Datensatz mit dem mitgegebenen Namen angezeigt werden

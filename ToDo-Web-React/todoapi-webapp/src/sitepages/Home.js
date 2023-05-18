@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Home() {
     const [todos, setTodos] = useState([])
+
+    const {id} = useParams();
 
     useEffect(() => {
       loadTodos();
@@ -15,6 +17,11 @@ export default function Home() {
       console.log(result.data);
       setTodos(result.data);
     } 
+
+    const deleteTodo = async (id) => {
+      await axios.delete(`http://localhost:8080/ToDos/${id}`);
+      loadTodos();
+  }
 
   return (
     <div className='container'>Home
@@ -30,8 +37,8 @@ export default function Home() {
                 <td>{todos.description}</td>
                 <td>{todos.deadlineDate}</td>
                 <td className='btn btn-primary'>Add ToDo</td>
-                <td className='btn btn-outline-primary'>Edit</td>
-                <td className='btn btn-danger'>Löschen</td>
+                <td><Link className='btn btn-outline-primary' to={`/edit/${todos.id}`}>Edit</Link></td>
+                <td className='btn btn-danger' onClick={() => deleteTodo(todos.id)}>Löschen</td>
               </tr>
             ))
           }

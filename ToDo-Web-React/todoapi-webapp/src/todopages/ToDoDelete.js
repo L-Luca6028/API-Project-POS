@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-export default function ToDoAdd() {
-  
+
+export default function ToDoDelete() {
+
     let navigate = useNavigate();
+
+    const {id} = useParams(); 
 
     const[todos, setTodos] = useState({
         priority:"",
@@ -12,24 +15,34 @@ export default function ToDoAdd() {
         description:"",
         deadlineDate:"",
         finished:"false"
-    })
+    });
 
     const{priority, whatToDo, description, deadlineDate, finished} = todos;
 
-
     const onInputChange = (e) => {
-        setTodos({...todos, [e.target.name]: e.target.value});
+        setTodos({...todos, [e.target.name]:e.target.value});
     };
+
+    useEffect( () => {
+        loadTodo();
+    }, []);
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/ToDos/save", todos);
+        await axios.put(`http://localhost:8080/ToDos/${id}`, todos);
         navigate("/home");
     } 
-  
-    return (
+
+    const loadTodo = async () => {
+        const result = await axios.get(`http://localhost:8080/ToDos/find/${id}`);
+        if (result.data) {
+            setTodos(result.data);
+        }
+    }
+
+
+  return (
     <div className='container'>
-        
         <form onSubmit={(e) => onSubmit(e)}>
             <div>
                 <label>Welche Priorität hat deine Vorhaben?</label>
@@ -45,14 +58,13 @@ export default function ToDoAdd() {
             </div>
             <div>
                 <label>Wann muss du fertig sein?</label>
-                <input type='date' placeholder='Bsp: 1.1.2024' name='deadlineDate' value={deadlineDate} onChange={(e) => onInputChange(e)}></input>
+                <input type='text' placeholder='Bsp: 1.1.2024' name='deadlineDate' value={deadlineDate} onChange={(e) => onInputChange(e)}></input>
             </div>
             <div>
                 <button className='btn btn-primary'>Abschicken</button>
                 <Link  className='btn btn-danger' to="/home">Verwerfen</Link>
             </div>
         </form>
-        
     </div>
   )
 }
