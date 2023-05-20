@@ -28,7 +28,8 @@
         <TextBox x:Name="priBox" Grid.Column="1" Grid.Row="0"></TextBox>
         <TextBox x:Name="wtdBox" Grid.Column="1" Grid.Row="1"></TextBox>
         <TextBox x:Name="disBox" Grid.Column="1" Grid.Row="2"></TextBox>
-        <TextBox x:Name="deadBox" Grid.Column="1" Grid.Row="3"></TextBox>
+        <DatePicker x:Name="datePick" Grid.Column="1" Grid.Row="3"/>
+        <TextBox x:Name="deadBox" Grid.Column="1" Grid.Row="3" IsEnabled="False" Visibility="Hidden"></TextBox>
 
         <Button x:Name="pushBtn" Grid.Column="1" Grid.Row="4" Click="pushBtn_Click" IsEnabled="True">Daten in Liste hinzufügen</Button>
         

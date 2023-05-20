@@ -14,7 +14,7 @@ export default function Home() {
     },[]);
   
     const loadTodos = async () => {
-      const result = await axios.get("http://localhost:8080/ToDos/all");
+      const result = await axios.get("http://192.168.0.191:8080/ToDos/all");
       console.log(result.data);   
       const sortedData = result.data.sort((a, b) => a.priority - b.priority);     // damit die Daten nach Priorität sortiert angezeigt werden
       setTodos(sortedData);
@@ -22,7 +22,7 @@ export default function Home() {
     } 
 
     const deleteTodo = async (id) => {
-      await axios.delete(`http://localhost:8080/ToDos/${id}`);
+      await axios.delete(`http://192.168.0.191:8080/ToDos/${id}`);
       loadTodos();
     }
 
@@ -36,10 +36,9 @@ export default function Home() {
           <thead>
             <tr>
               <th scope="col">Priorität</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
+              <th scope="col">Tätigkeit</th>
+              <th scope="col">zusätzliches</th>
               <th scope="col">Fälligkeitsdatum</th>
-              <th scope="col">Fertig</th>
               <th scope="col"> </th>
               <th scope="col"> </th>
             </tr>
@@ -51,8 +50,7 @@ export default function Home() {
                   <td>{todos.priority}</td>
                   <td>{todos.whatToDo}</td>
                   <td>{todos.description}</td>
-                  <td>{todos.deadlineDate}</td>
-                  <td><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input></td>    
+                  <td>{todos.deadlineDate}</td>   
                   <td><Link className='btn btn-sm btn-outline-primary' to={`/edit/${todos.id}`}>Edit</Link></td>
                   <td><button className='btn btn-sm btn-danger' onClick={() => deleteTodo(todos.id)}>Löschen</button></td>
                 </tr>

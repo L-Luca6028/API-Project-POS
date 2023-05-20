@@ -41,7 +41,8 @@ namespace ToDoAppAPI
                 newToDo.Priority = int.Parse(priBox.Text);
                 newToDo.WhatToDo = wtdBox.Text;
                 newToDo.Description = disBox.Text;
-                newToDo.DeadlineDate = deadBox.Text;
+                //newToDo.DeadlineDate = deadBox.Text;
+                newToDo.DeadlineDate = datePick.SelectedDate.ToString();
                 //newToDo.Finished = false;             // nicht notwendig da "finished" von Anfang an false ist
             }
             catch (Exception ex)
@@ -55,9 +56,13 @@ namespace ToDoAppAPI
             }
             
             // Prüfen der richtigen Eingabe
-            if (priBox.Text.Equals("") || wtdBox.Text.Equals("") || deadBox.Text.Equals(""))
+            if (priBox.Text.Equals("") || wtdBox.Text.Equals("") || datePick.SelectedDate.ToString().Equals(""))
             {
                 getMessageBoxes(0);
+            }
+            else if (newToDo.Priority > 10)
+            {
+                getMessageBoxes(2);
             }
             else
             {   
@@ -93,6 +98,15 @@ namespace ToDoAppAPI
             else if (i == 1)
             {
                 string messageBoxText = "Keine Priorität angegeben! Priorität wurde automatisch auf 1 gesetzt!";
+                string caption = "Eingabe Fehler!";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
+            else if (i == 2)
+            {
+                string messageBoxText = "Priorität kann nur zwischen 1 und 10 liegen!";
                 string caption = "Eingabe Fehler!";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Information;

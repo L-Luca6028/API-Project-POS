@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -34,6 +35,7 @@ namespace ToDoAppAPI
         {
             string data = httpClient.GetStringAsync("http://localhost:8080/ToDos/all").Result;   // Ich hole mir die URL von der API, die ich haben will
             ToDo[] toDo = JsonConvert.DeserializeObject<ToDo[]>(data);      // Das JSON-Objekt in ein .Net-Objekt umwandeln
+            Array.Sort(toDo, (x, y) => x.Priority.CompareTo(y.Priority));   // Das Array wird sortiert
 
             return toDo;
         }
@@ -43,6 +45,7 @@ namespace ToDoAppAPI
             InitializeComponent();
      
             ToDo[] toDo = getApiContent();
+            
             // Das Alle Elemente in der API in der Liste angezeigt werden
             foreach (ToDo elem in toDo)
             {

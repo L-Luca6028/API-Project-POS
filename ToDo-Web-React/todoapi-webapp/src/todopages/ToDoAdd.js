@@ -23,9 +23,18 @@ export default function ToDoAdd() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/ToDos/save", todos);
+        await axios.post("http://192.168.0.191:8080/ToDos/save", todos);
         navigate("/home");
     } 
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+      
+        return `${day}.${month}.${year}`;
+      };
   
     return (
     <div className='container'>
@@ -45,7 +54,12 @@ export default function ToDoAdd() {
             </div>
             <div>
                 <label>Wann muss du fertig sein?</label>
-                <input type='date' placeholder='Bsp: 1.1.2024' name='deadlineDate' value={deadlineDate} onChange={(e) => onInputChange(e)}></input>
+                <input type='date' pattern="\d{2}\.\d{2}\.\d{4}" placeholder='Bsp: 1.1.2024' name='deadlineDate' value={deadlineDate} onChange={(e) => onInputChange(e)}
+                onBlur={(e) => {
+                    const formattedDate = formatDate(e.target.value);
+                    setTodos({ ...todos, deadlineDate: formattedDate });
+                  }}
+                ></input>
             </div>
             <div>
                 <button className='btn btn-primary'>Abschicken</button>

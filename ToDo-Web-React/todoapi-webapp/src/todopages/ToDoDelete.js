@@ -29,12 +29,12 @@ export default function ToDoDelete() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:8080/ToDos/${id}`, todos);
+        await axios.put(`http://192.168.0.191:8080/ToDos/${id}`, todos);
         navigate("/home");
     } 
 
     const loadTodo = async () => {
-        const result = await axios.get(`http://localhost:8080/ToDos/find/${id}`);
+        const result = await axios.get(`http://192.168.0.191:8080/ToDos/find/${id}`);
         if (result.data) {
             setTodos(result.data);
         }

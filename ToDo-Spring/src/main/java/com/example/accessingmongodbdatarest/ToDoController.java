@@ -2,12 +2,17 @@ package com.example.accessingmongodbdatarest;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
-@CrossOrigin("http://localhost:3000")    // Damit kein Cross-Origin Header-Fehler im Browser ausgelöst wird. Den Port der React-App angeben also 3000
+@CrossOrigin("*") // Damit kein Cross-Origin Header-Fehler im Browser ausgelöst wird. Mit * kann jede Domäne auf die React-App zugreifen
 public class ToDoController {
+
 
     // Für das Aufrufen von den Funktionen vom Repository
     private final ToDoRepository repository;
@@ -23,20 +28,17 @@ public class ToDoController {
         return repository.findAll();
     }
 
-    // Es soll nur der Datensatz mit dem mitgegebenen Namen angezeigt werden
+    // Es soll nur der Datensatz mit der mitgegebenen id angezeigt werden
     @RequestMapping("/ToDos/find/{id}")
     Optional<ToDo> findToDoById(@PathVariable String id) {
-        //System.out.println("Super es funktioniert!!!");
         return repository.findById(id);
     }
 
     // Es soll nur der Datensatz mit dem mitgegebenen Namen angezeigt werden
     @RequestMapping("/ToDos/{whatToDo}")
     List<ToDo> findToDoByName(@PathVariable String whatToDo) {
-        //System.out.println("Super es funktioniert!!!");
         return repository.findByWhatToDo(whatToDo);
     }
-
 
     // Write (Schreiben)
     @PostMapping("/ToDos/save")
