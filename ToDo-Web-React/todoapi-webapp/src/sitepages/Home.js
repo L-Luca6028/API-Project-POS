@@ -2,48 +2,65 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import { Link, useParams } from 'react-router-dom';
+import Navbar from '../siteelements/navbar';
 
 export default function Home() {
     const [todos, setTodos] = useState([])
 
     const {id} = useParams();
-
+    
     useEffect(() => {
       loadTodos();
     },[]);
   
     const loadTodos = async () => {
       const result = await axios.get("http://localhost:8080/ToDos/all");
-      console.log(result.data);
-      setTodos(result.data);
+      console.log(result.data);   
+      const sortedData = result.data.sort((a, b) => a.priority - b.priority);     // damit die Daten nach Priorität sortiert angezeigt werden
+      setTodos(sortedData);
+
     } 
 
     const deleteTodo = async (id) => {
       await axios.delete(`http://localhost:8080/ToDos/${id}`);
       loadTodos();
-  }
+    }
+
+
 
   return (
-    <div className='container'>Home
-    <Link className='btn btn-secondary' to='/add'>Hinzufügen</Link>
-        <table>
-        <tbody>
-          {
-            todos.map((todos, index) => (
-              <tr>
-                <th scope='row' key={index}>{index+1}</th>
-                <td>{todos.priority}</td>
-                <td>{todos.whatToDo}</td>
-                <td>{todos.description}</td>
-                <td>{todos.deadlineDate}</td>
-                <td className='btn btn-primary'>Add ToDo</td>
-                <td><Link className='btn btn-outline-primary' to={`/edit/${todos.id}`}>Edit</Link></td>
-                <td className='btn btn-danger' onClick={() => deleteTodo(todos.id)}>Löschen</td>
-              </tr>
-            ))
-          }
-        </tbody>
+    <div>
+      <Navbar></Navbar>
+      <div className='container'>
+        <table className='table'>
+          <thead>
+            <tr>
+              <th scope="col">Priorität</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Fälligkeitsdatum</th>
+              <th scope="col">Fertig</th>
+              <th scope="col"> </th>
+              <th scope="col"> </th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              todos.map((todos) => (
+                <tr>
+                  <td>{todos.priority}</td>
+                  <td>{todos.whatToDo}</td>
+                  <td>{todos.description}</td>
+                  <td>{todos.deadlineDate}</td>
+                  <td><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input></td>    
+                  <td><Link className='btn btn-sm btn-outline-primary' to={`/edit/${todos.id}`}>Edit</Link></td>
+                  <td><button className='btn btn-sm btn-danger' onClick={() => deleteTodo(todos.id)}>Löschen</button></td>
+                </tr>
+              ))
+            }
+          </tbody>
         </table> 
+      </div>
     </div>
   );
 }
