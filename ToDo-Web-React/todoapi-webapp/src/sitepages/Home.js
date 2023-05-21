@@ -6,8 +6,6 @@ import Navbar from '../siteelements/navbar';
 
 export default function Home() {
     const [todos, setTodos] = useState([])
-
-    const {id} = useParams();
     
     useEffect(() => {
       loadTodos();
@@ -16,10 +14,10 @@ export default function Home() {
     const loadTodos = async () => {
       const result = await axios.get("http://192.168.0.191:8080/ToDos/all");
       console.log(result.data);   
-      const sortedData = result.data.sort((a, b) => a.priority - b.priority);     // damit die Daten nach Priorität sortiert angezeigt werden
+      const sortedData = result.data.sort((a, b) => b.priority - a.priority);     // damit die Daten nach Priorität sortiert angezeigt werden
       setTodos(sortedData);
 
-    } 
+    }
 
     const deleteTodo = async (id) => {
       await axios.delete(`http://192.168.0.191:8080/ToDos/${id}`);

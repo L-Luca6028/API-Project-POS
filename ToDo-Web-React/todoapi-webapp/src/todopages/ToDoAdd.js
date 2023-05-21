@@ -54,7 +54,7 @@ export default function ToDoAdd() {
             </div>
             <div>
                 <label>Wann muss du fertig sein?</label>
-                <input type='date' pattern="\d{2}\.\d{2}\.\d{4}" placeholder='Bsp: 1.1.2024' name='deadlineDate' value={deadlineDate} onChange={(e) => onInputChange(e)}
+                <input type='date' placeholder='Bsp: 1.1.2024' name='deadlineDate' value={deadlineDate} onChange={(e) => onInputChange(e)}
                 onBlur={(e) => {
                     const formattedDate = formatDate(e.target.value);
                     setTodos({ ...todos, deadlineDate: formattedDate });

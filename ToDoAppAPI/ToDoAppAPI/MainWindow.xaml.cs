@@ -28,15 +28,13 @@ namespace ToDoAppAPI
     {
         HttpClient httpClient = new HttpClient();
 
-        // Die Get-Methode, Der Client und der data-String sind static, da sich diese beiden Varialen nie ändern
-        // Außerdem sind die folgenden drei Zeilen globale VAriablen und somit kann man mit der Put und Delete Funktion
-        // darauf zugreifen
+        // Die Get-Methode
+        // Implementation extra in einer Funktion damit alle anderen HTTP-Methoden dies auch verwenden können
         private ToDo[] getApiContent()
         {
             string data = httpClient.GetStringAsync("http://localhost:8080/ToDos/all").Result;   // Ich hole mir die URL von der API, die ich haben will
             ToDo[] toDo = JsonConvert.DeserializeObject<ToDo[]>(data);      // Das JSON-Objekt in ein .Net-Objekt umwandeln
-            Array.Sort(toDo, (x, y) => x.Priority.CompareTo(y.Priority));   // Das Array wird sortiert
-
+            Array.Sort(toDo, (x, y) => y.Priority.CompareTo(x.Priority));   // Das Array wird absteigend sortiert
             return toDo;
         }
         
@@ -94,6 +92,7 @@ namespace ToDoAppAPI
             {
                 if (ToDoList.SelectedItem.Equals(elem.WhatToDo))
                 {
+                    ToDoList.Items.Remove(elem.WhatToDo);
                     // Die aktualisierten neuen Werte, die in die Text Boxes eingegeben wurden
                     // überschreiben die alten Werte des Objektes
                     elem.Priority = Convert.ToInt32(TbPri.Text);
@@ -104,7 +103,8 @@ namespace ToDoAppAPI
                     string toDoToJson = JsonConvert.SerializeObject(elem);                                  // In JSON-Objekt umwandeln      
                     StringContent httpContent = new StringContent(toDoToJson, Encoding.UTF8, "application/json"); //den String der den UTF8 Zeichen entspricht mit dem Header "application/json" in ein String Content speichern
                     var response = await httpClient.PutAsync($"http://localhost:8080/ToDos/{elem.Id}", httpContent); // Die PUT-Methode ausführen
-
+                    toDo = getApiContent();     // Damit die geänderten Wert gleich neu übernommen werden
+                    ToDoList.Items.Add(elem.WhatToDo);
                 }
             }
 
@@ -113,12 +113,6 @@ namespace ToDoAppAPI
             TbWtd.Clear();
             TbDes.Clear();
             TbDate.Clear();
-
-            // Um das Fenster zu aktualisieren
-            /*MainWindow newWindow = new MainWindow();
-            Application.Current.MainWindow = newWindow;
-            newWindow.Show();
-            this.Close();*/
 
         }
 

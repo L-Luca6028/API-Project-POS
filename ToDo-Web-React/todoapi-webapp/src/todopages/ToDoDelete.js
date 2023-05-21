@@ -35,9 +35,7 @@ export default function ToDoDelete() {
 
     const loadTodo = async () => {
         const result = await axios.get(`http://192.168.0.191:8080/ToDos/find/${id}`);
-        if (result.data) {
-            setTodos(result.data);
-        }
+        setTodos(result.data);
     }
 
 

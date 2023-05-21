@@ -41,9 +41,8 @@ namespace ToDoAppAPI
                 newToDo.Priority = int.Parse(priBox.Text);
                 newToDo.WhatToDo = wtdBox.Text;
                 newToDo.Description = disBox.Text;
-                //newToDo.DeadlineDate = deadBox.Text;
-                newToDo.DeadlineDate = datePick.SelectedDate.ToString();
-                //newToDo.Finished = false;             // nicht notwendig da "finished" von Anfang an false ist
+                newToDo.DeadlineDate = datePick.SelectedDate?.ToString("dd.MM.yyy"); 
+                // ? wird verwendet, um sicherzustellen, dass datePick.SelectedDate nicht null ist, bevor die ToString()-Methode aufgerufen wird.
             }
             catch (Exception ex)
             {
