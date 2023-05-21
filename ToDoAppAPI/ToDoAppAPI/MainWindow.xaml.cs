@@ -95,7 +95,7 @@ namespace ToDoAppAPI
             
             ToDo[] toDo = getApiContent();
             string selectedWhatToDo = ToDoList.SelectedItem.ToString();
-            ToDo selectedToDo = toDo.FirstOrDefault(t => t.WhatToDo == selectedWhatToDo); // sucht in der toDo-Liste nach dem ersten Element, das gleich selectedWhatToDo ist
+            ToDo selectedToDo = toDo.FirstOrDefault(elem => elem.WhatToDo == selectedWhatToDo); // sucht in der toDo-Liste nach dem ersten Element, das gleich selectedWhatToDo ist
 
             if (selectedToDo != null)
             {
