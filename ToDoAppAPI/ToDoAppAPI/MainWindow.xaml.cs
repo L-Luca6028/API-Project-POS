@@ -37,6 +37,14 @@ namespace ToDoAppAPI
             Array.Sort(toDo, (x, y) => y.Priority.CompareTo(x.Priority));   // Das Array wird absteigend sortiert
             return toDo;
         }
+
+        private void addDataToList(ToDo[] toDo)
+        {
+            foreach (ToDo elem in toDo)
+            {
+                ToDoList.Items.Add(elem.WhatToDo);
+            }
+        }
         
         public MainWindow()
         {
@@ -45,10 +53,7 @@ namespace ToDoAppAPI
             ToDo[] toDo = getApiContent();
             
             // Das Alle Elemente in der API in der Liste angezeigt werden
-            foreach (ToDo elem in toDo)
-            {
-                ToDoList.Items.Add(elem.WhatToDo);
-            }
+            addDataToList(toDo);
 
         }
 
@@ -87,26 +92,28 @@ namespace ToDoAppAPI
         // Die Put-Methode
         private async void PutData_Click(object sender, RoutedEventArgs e)
         {
+            
             ToDo[] toDo = getApiContent();
-            foreach (ToDo elem in toDo)
-            {
-                if (ToDoList.SelectedItem.Equals(elem.WhatToDo))
-                {
-                    ToDoList.Items.Remove(elem.WhatToDo);
-                    // Die aktualisierten neuen Werte, die in die Text Boxes eingegeben wurden
-                    // überschreiben die alten Werte des Objektes
-                    elem.Priority = Convert.ToInt32(TbPri.Text);
-                    elem.WhatToDo = TbWtd.Text;
-                    elem.Description = TbDes.Text;
-                    elem.DeadlineDate = TbDate.Text;
+            string selectedWhatToDo = ToDoList.SelectedItem.ToString();
+            ToDo selectedToDo = toDo.FirstOrDefault(t => t.WhatToDo == selectedWhatToDo); // sucht in der toDo-Liste nach dem ersten Element, das gleich selectedWhatToDo ist
 
-                    string toDoToJson = JsonConvert.SerializeObject(elem);                                  // In JSON-Objekt umwandeln      
-                    StringContent httpContent = new StringContent(toDoToJson, Encoding.UTF8, "application/json"); //den String der den UTF8 Zeichen entspricht mit dem Header "application/json" in ein String Content speichern
-                    var response = await httpClient.PutAsync($"http://localhost:8080/ToDos/{elem.Id}", httpContent); // Die PUT-Methode ausführen
-                    toDo = getApiContent();     // Damit die geänderten Wert gleich neu übernommen werden
-                    ToDoList.Items.Add(elem.WhatToDo);
-                }
+            if (selectedToDo != null)
+            {
+                ToDoList.Items.Clear();
+                // Die aktualisierten neuen Werte, die in die Text Boxes eingegeben wurden,
+                // überschreiben die alten Werte des Objekts
+                selectedToDo.Priority = Convert.ToInt32(TbPri.Text);
+                selectedToDo.WhatToDo = TbWtd.Text;
+                selectedToDo.Description = TbDes.Text;
+                selectedToDo.DeadlineDate = TbDate.Text;
+
+                string toDoToJson = JsonConvert.SerializeObject(selectedToDo);
+                StringContent httpContent = new StringContent(toDoToJson, Encoding.UTF8, "application/json");
+                var response = await httpClient.PutAsync($"http://localhost:8080/ToDos/{selectedToDo.Id}", httpContent); // Die PUT - Methode ausführen
+                toDo = getApiContent();
+                addDataToList(toDo);
             }
+
 
             PutData.IsEnabled = false;
             TbPri.Clear();
@@ -128,8 +135,12 @@ namespace ToDoAppAPI
                     {
                         // Es wird ein try-catch-Block benötigt, da sonnst eine Exception geworfen wird weil ein Methodenaufruf für den aktuelle Zustand ungültig wäre
                         // Die DELETE-Methode ausführen und ein Objekt aus der API entfernen
-                        using var response = httpClient.DeleteAsync($"http://localhost:8080/ToDos/{elem.Id}");
-                        
+                        using var response = await httpClient.DeleteAsync($"http://localhost:8080/ToDos/{elem.Id}");
+                        ToDoList.Items.Remove(ToDoList.SelectedItem);   // Das Entfernen der Objekt aus der Liste in dem GUI
+                        TbPri.Clear();
+                        TbWtd.Clear();
+                        TbDes.Clear();
+                        TbDate.Clear();
                     }
                     catch (Exception ex)
                     {

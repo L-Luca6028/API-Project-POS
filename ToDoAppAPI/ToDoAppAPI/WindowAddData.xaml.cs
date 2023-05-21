@@ -47,11 +47,6 @@ namespace ToDoAppAPI
             catch (Exception ex)
             {
                 Console.Error.WriteLine($"Die Exception: {ex} wurde gefangen");
-                getMessageBoxes(1);
-                newToDo.Priority = 1;
-                newToDo.WhatToDo = wtdBox.Text;
-                newToDo.Description = disBox.Text;
-                newToDo.DeadlineDate = deadBox.Text;
             }
             
             // Prüfen der richtigen Eingabe
