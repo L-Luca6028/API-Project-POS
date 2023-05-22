@@ -32,6 +32,6 @@
         <TextBox x:Name="deadBox" Grid.Column="1" Grid.Row="3" IsEnabled="False" Visibility="Hidden"></TextBox>
 
         <Button x:Name="pushBtn" Grid.Column="1" Grid.Row="4" Click="pushBtn_Click" IsEnabled="True">Daten in Liste hinzufügen</Button>
-        
+        <Button x:Name="cancelBtn" Grid.Row="4" Click="cancelBtn_Click">Abbrechen</Button>
     </Grid>
 </Window>

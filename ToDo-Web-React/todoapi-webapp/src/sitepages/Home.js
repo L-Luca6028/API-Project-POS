@@ -39,22 +39,22 @@ export default function Home() {
         <Navbar></Navbar>
         <div className='container-fluid'>
           {
-            todos.map((todos) => (
-              <div class="accordion m-1" id="accordionExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" onClick={toggleCollapse}>
-                    {todos.priority}. {todos.whatToDo}
+            todos.map((todo) => (
+              <div className="accordion m-1" id="accordionExample">
+                <div className="accordion-item">
+                  <h2 className="accordion-header">
+                    <button className="accordion-button collapsed" type="button" onClick={toggleCollapse}>
+                    {todo.priority}. {todo.whatToDo}
                     </button>
                   </h2>
-                  <div id="collapseOne" class={`accordion-collapse collapse ${isCollapsed ? '' : 'show'}`}>
-                    <div class="accordion-body">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>zusätz. Infos: </strong>{todos.description}</li>
-                        <li class="list-group-item"><strong>Fälligkeitsdatum: </strong>{todos.deadlineDate}</li>
-                        <li class="list-group-item">
-                          <Link className='btn btn-sm btn-outline-primary m-2' to={`/edit/${todos.id}`}>Bearbeiten</Link>
-                          <button className='btn btn-sm btn-danger m-2' onClick={() => deleteTodo(todos.id)}>Löschen</button>
+                  <div id="collapseOne" className={`accordion-collapse collapse ${isCollapsed ? '' : 'show'}`}>
+                    <div className="accordion-body">
+                      <ul className="list-group list-group-flush">
+                        <li className="list-group-item"><strong>zusätz. Infos: </strong>{todo.description}</li>
+                        <li className="list-group-item"><strong>Fälligkeitsdatum: </strong>{todo.deadlineDate}</li>
+                        <li className="list-group-item">
+                          <Link className='btn btn-sm btn-outline-primary m-2' to={`/edit/${todo.id}`}>Bearbeiten</Link>
+                          <button className='btn btn-sm btn-danger m-2' onClick={() => deleteTodo(todo.id)}>Löschen</button>
                         </li>
                       </ul>
                     </div>

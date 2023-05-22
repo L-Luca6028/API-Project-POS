@@ -77,6 +77,15 @@ namespace ToDoAppAPI
             
         }
 
+        private void cancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // das Main fenster wieder starten
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+
         // Funktione für verschiedene MessageBoxes
         public void getMessageBoxes(int i)
         {
