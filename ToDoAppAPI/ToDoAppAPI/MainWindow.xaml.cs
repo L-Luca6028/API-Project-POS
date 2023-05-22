@@ -34,16 +34,8 @@ namespace ToDoAppAPI
         {
             string data = httpClient.GetStringAsync("http://localhost:8080/ToDos/all").Result;   // Ich hole mir die URL von der API, die ich haben will
             ToDo[] toDo = JsonConvert.DeserializeObject<ToDo[]>(data);      // Das JSON-Objekt in ein .Net-Objekt umwandeln
-            Array.Sort(toDo, (x, y) => y.Priority.CompareTo(x.Priority));   // Das Array wird absteigend sortiert
+            Array.Sort(toDo, (x, y) => y.Priority.CompareTo(x.Priority));   // Das Array wird absteigend sortiert Lambda Funktion
             return toDo;
-        }
-
-        private void addDataToList(ToDo[] toDo)
-        {
-            foreach (ToDo elem in toDo)
-            {
-                ToDoList.Items.Add(elem.WhatToDo);
-            }
         }
         
         public MainWindow()
@@ -51,8 +43,6 @@ namespace ToDoAppAPI
             InitializeComponent();
      
             ToDo[] toDo = getApiContent();
-            
-            // Das Alle Elemente in der API in der Liste angezeigt werden
             addDataToList(toDo);
 
         }
@@ -99,7 +89,6 @@ namespace ToDoAppAPI
 
             if (selectedToDo != null)
             {
-                ToDoList.Items.Clear();
                 // Die aktualisierten neuen Werte, die in die Text Boxes eingegeben wurden,
                 // überschreiben die alten Werte des Objekts
                 selectedToDo.Priority = Convert.ToInt32(TbPri.Text);
@@ -107,20 +96,32 @@ namespace ToDoAppAPI
                 selectedToDo.Description = TbDes.Text;
                 selectedToDo.DeadlineDate = TbDate.Text;
 
-                string toDoToJson = JsonConvert.SerializeObject(selectedToDo);
-                StringContent httpContent = new StringContent(toDoToJson, Encoding.UTF8, "application/json");
-                var response = await httpClient.PutAsync($"http://localhost:8080/ToDos/{selectedToDo.Id}", httpContent); // Die PUT - Methode ausführen
-                toDo = getApiContent();
-                addDataToList(toDo);
+                // Prüfen der richtigen Eingabe
+                if (TbPri.Text.Equals("") || TbWtd.Text.Equals("") || TbDate.Text.Equals(""))
+                {
+                    getMessageBoxes(0);
+                }
+                else if (selectedToDo.Priority > 10)
+                {
+                    getMessageBoxes(1);
+                }
+                else
+                {
+                    ToDoList.Items.Clear();
+                    string toDoToJson = JsonConvert.SerializeObject(selectedToDo);
+                    StringContent httpContent = new StringContent(toDoToJson, Encoding.UTF8, "application/json");
+                    var response = await httpClient.PutAsync($"http://localhost:8080/ToDos/{selectedToDo.Id}", httpContent); // Die PUT - Methode ausführen
+                    toDo = getApiContent();
+                    addDataToList(toDo);
+
+                    DeleteData.IsEnabled = false;
+                    PutData.IsEnabled = false;
+                    TbPri.Clear();
+                    TbWtd.Clear();
+                    TbDes.Clear();
+                    TbDate.Clear();
+                }
             }
-
-
-            PutData.IsEnabled = false;
-            TbPri.Clear();
-            TbWtd.Clear();
-            TbDes.Clear();
-            TbDate.Clear();
-
         }
 
         // Die Delete-Methode
@@ -141,6 +142,8 @@ namespace ToDoAppAPI
                         TbWtd.Clear();
                         TbDes.Clear();
                         TbDate.Clear();
+                        DeleteData.IsEnabled = false;
+                        PutData.IsEnabled = false;
                     }
                     catch (Exception ex)
                     {
@@ -150,9 +153,43 @@ namespace ToDoAppAPI
                         TbWtd.Clear();
                         TbDes.Clear();
                         TbDate.Clear();
+                        DeleteData.IsEnabled = false;
+                        PutData.IsEnabled = false;
                     }
                 }
             }
+     
         }
+
+        private void addDataToList(ToDo[] toDo)
+        {
+            foreach (ToDo elem in toDo)
+            {
+                ToDoList.Items.Add(elem.WhatToDo);
+            }
+        }
+
+        public void getMessageBoxes(int i)
+        {
+            if (i == 0)
+            {
+                string messageBoxText = "Ein notwendiges Feld wurde nicht ausgefüllt!";
+                string caption = "Eingabe Fehler!";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
+            else if (i == 1)
+            {
+                string messageBoxText = "Priorität kann nur zwischen 1 und 10 liegen!";
+                string caption = "Eingabe Fehler!";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
+        }
+
     }
 }

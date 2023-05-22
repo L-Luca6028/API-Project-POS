@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { Link, useNavigate, useParams } from 'react-router-dom';
-
+import Navbar from '../siteelements/navbar';
 
 export default function ToDoDelete() {
 
@@ -30,7 +30,7 @@ export default function ToDoDelete() {
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.put(`http://localhost:8080/ToDos/${id}`, todos);
-        navigate("/home");
+        navigate("/");
     } 
 
     const loadTodo = async () => {
@@ -40,29 +40,37 @@ export default function ToDoDelete() {
 
 
   return (
-    <div className='container'>
-        <form onSubmit={(e) => onSubmit(e)}>
-            <div>
-                <label>Welche Priorität hat deine Vorhaben?</label>
-                <input type='number' placeholder='Zahl zwischen 1 und 10' name='priority' value={priority} onChange={(e) => onInputChange(e)}></input>
-            </div>
-            <div>
-                <label>Was hast du zu erledigen?</label>
-                <input type='text' placeholder='Rasenmähen' name='whatToDo' value={whatToDo} onChange={(e) => onInputChange(e)}></input>
-            </div>
-            <div>
-                <label>zusätzliche Notizen?(optional)</label>
-                <input type='text' placeholder='4 cm hoher Rasen' name='description' value={description} onChange={(e) => onInputChange(e)}></input>
-            </div>
-            <div>
-                <label>Wann muss du fertig sein?</label>
-                <input type='text' placeholder='Bsp: 1.1.2024' name='deadlineDate' value={deadlineDate} onChange={(e) => onInputChange(e)}></input>
-            </div>
-            <div>
-                <button className='btn btn-primary'>Abschicken</button>
-                <Link  className='btn btn-danger' to="/home">Verwerfen</Link>
-            </div>
-        </form>
+    <div>
+        <Navbar></Navbar>
+        <div className='container'>
+            <div className='row'>
+                <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
+                    <h2 className='text.center m-4'>ToDo bearbeiten</h2>
+                    <form onSubmit={(e) => onSubmit(e)}>
+                        <div className='mb-3'>
+                            <label className='form-label'>Welche Priorität hat deine Vorhaben?</label>
+                            <input className='form-control' type='number' placeholder='Zahl zwischen 1 und 10' name='priority' value={priority} onChange={(e) => onInputChange(e)}></input>
+                        </div>
+                        <div className='mb-3'>
+                            <label className='form-label'>Was hast du zu erledigen?</label>
+                            <input className='form-control' type='text' placeholder='Rasenmähen' name='whatToDo' value={whatToDo} onChange={(e) => onInputChange(e)}></input>
+                        </div>
+                        <div className='mb-3'>
+                            <label className='form-label'>zusätzliche Notizen?(optional)</label>
+                            <input className='form-control' type='text' placeholder='4 cm hoher Rasen' name='description' value={description} onChange={(e) => onInputChange(e)}></input>
+                        </div>
+                        <div className='mb-3'>
+                            <label className='form-label'>Wann muss du fertig sein?</label>
+                            <input className='form-control' type='text' placeholder='Bsp: 1.1.2024' name='deadlineDate' value={deadlineDate} onChange={(e) => onInputChange(e)}></input>
+                        </div>
+                        <div className='mb-3'>
+                            <button className='btn btn-primary m-2'>Abschicken</button>
+                            <Link  className='btn btn-danger m-2' to="/">Verwerfen</Link>
+                        </div>
+                    </form>
+                </div>
+            </div>        
+        </div>
     </div>
   )
 }

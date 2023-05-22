@@ -54,9 +54,9 @@ namespace ToDoAppAPI
             {
                 getMessageBoxes(0);
             }
-            else if (newToDo.Priority > 10)
+            else if (newToDo.Priority > 10 || newToDo.Priority < 0)
             {
-                getMessageBoxes(2);
+                getMessageBoxes(1);
             }
             else
             {   
@@ -90,15 +90,6 @@ namespace ToDoAppAPI
                 result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
             }
             else if (i == 1)
-            {
-                string messageBoxText = "Keine Priorität angegeben! Priorität wurde automatisch auf 1 gesetzt!";
-                string caption = "Eingabe Fehler!";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Information;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
-            }
-            else if (i == 2)
             {
                 string messageBoxText = "Priorität kann nur zwischen 1 und 10 liegen!";
                 string caption = "Eingabe Fehler!";

@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path='/home' element={<Home/>}></Route>
+          <Route exact path='/' element={<Home/>}></Route>
           <Route exact path='/add' element={<ToDoAdd/>}></Route>
           <Route exact path='/edit/:id' element={<ToDoDelete/>}></Route>
         </Routes>

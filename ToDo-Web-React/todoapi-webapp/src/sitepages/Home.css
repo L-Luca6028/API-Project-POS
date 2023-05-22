@@ -1,0 +1,14 @@
+#addButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 100px;
+    background-color: green;
+    color: white;
+    text-decoration: none;
+}
+
+body {
+    background-color: gray;
+}
