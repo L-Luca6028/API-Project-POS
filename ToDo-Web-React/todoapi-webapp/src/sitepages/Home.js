@@ -12,7 +12,7 @@ export default function Home() {
     },[]);
   
     const loadTodos = async () => {
-      const result = await axios.get("http://192.168.0.191:8080/ToDos/all");
+      const result = await axios.get("http://192.168.0.73:8080/ToDos/all");
       console.log(result.data);   
       const sortedData = result.data.sort((a, b) => b.priority - a.priority);     // damit die Daten nach Priorität sortiert angezeigt werden
       setTodos(sortedData);
@@ -20,7 +20,7 @@ export default function Home() {
     }
 
     const deleteTodo = async (id) => {
-      await axios.delete(`http://192.168.0.191:8080/ToDos/${id}`);
+      await axios.delete(`http://192.168.0.73:8080/ToDos/${id}`);
       loadTodos();
     }
 
