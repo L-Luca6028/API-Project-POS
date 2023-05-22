@@ -23,7 +23,7 @@ export default function ToDoAdd() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://192.168.0.73:8080/ToDos/save", todos);
+        await axios.post("http://localhost:8080/ToDos/save", todos);
         navigate("/home");
     } 
 
