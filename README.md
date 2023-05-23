@@ -69,26 +69,27 @@ Damit jedoch alle gezeigten Komponenten zusammenarbeiten können, müssen sogena
 ![image](./Images/13_img.png)
 Die obigen Dependencies werden benötigt, damit MongoDB, aber auch SpringBoot gemeinsam funktioniert. 
 
+<hr>
 
 **_Actuator_**
 In den Vorgaben für die Umsetzung des Projektes ist gefordert, dass der Server einen "Health"-Status bereitstellen soll. Um diese Anforderungen zu erfüllen kommt der Actuator ins Spiel. Dieser ermöglicht es mithilfe von REST-Endpunkten, wichtige Informationen über die laufende Anwendung bereitzustellen. Eine Information darunter ist "Health", die es ermöglicht nachzusehen ob die Anwendung erfolgreich gestartet wurde. Man kann den Status folgendermaßen Prüfen:
-![[Pasted image 20230521162528.png]]
+
 Im Browser mit oben gezeigten Pfad.
+(./Images/35_img.png)
 
-![[Pasted image 20230521162637.png]]
 Oder in Insomnia bzw. in Postman.
-
+(./Images/36_img.png)
 
 #### 2.1.2. MongoDB Atlas - Datenbank
 Für mein kleines Projekt habe ich mich für MongoDB als Datenbank entschieden. Da jedoch nicht gewollt ist, dass die Datenbank auf einem lokalen Gerät abgelegt ist, habe ich mich dazu entschieden MongoDB Atlas zu verwenden. Atlas bietet den großen Vorteil, dass meine Datenbank rund um die Uhr online ist und ich somit jeder Zeit Daten senden und empfangen kann.
 
 Damit sich der Client überhaupt zur Datenbank verbinden kann muss in der `application.properties`-Datei der SpringBoot-Anwendung folgende Zeile Code hinein:
-![[Pasted image 20230521172934.png]]
+(./Images/37_img.png)
 `spring.data.mongodb.uri` benötigt die URL-von dem MonoDB Atlas Cluster. Diesen Link kann man einfach aus der GUI von Atlas kopieren.
-![[Pasted image 20230521173449.png]]
+(./Images/33_img.png)
 
 So sieht die Datenbank in der Atlas-GUI aus. Ein Client kann diese Daten abfragen sowie auch bearbeiten und Löschen.
-![[Pasted image 20230521173600.png]]
+(./Images/34_img.png)
 
 
 ### 2.2. Beschreibung der Software - Clients
@@ -96,17 +97,17 @@ So sieht die Datenbank in der Atlas-GUI aus. Ein Client kann diese Daten abfrage
 ##### 2.2.1.1. Aufsetzten eines React Projekts
 _Alle diese Installationen sind im Terminal in Visual Studio Code erfolgt._
 Als erstes muss man ein React-Projekt erstellen:
-![[Pasted image 20230515165649.png]]
+(./Images/27_img.png)
 
 Damit man HTTP-Methoden in React durchführen kann installiere ich noch einen HTTP-Client für den Browser. Dieser Client trägt den Namen "axios" und mit dessen Hilfe können sämtliche HTTP-Methoden realisiert werden:
-![[Pasted image 20230517175529.png]]
+(./Images/32_img.png)
 
 Damit sich die einzelen Komponenten erreichen können benötigt man folgendes Paket:
-![[Pasted image 20230515172623.png]]
+(./Images/30_img.png)
 
 Damit man die Web-App gut designen kann sollte man auch noch Bootstrap installieren:
-![[Pasted image 20230515171732.png]]
-![[Pasted image 20230515171747.png]]
+(./Images/28_img.png)
+(./Images/29_img.png)
 
 
 ##### 2.2.1.2. HTTP-Methoden
@@ -168,11 +169,12 @@ Hier seht man zum Beispiel, dass dieses `Link`-Element mit `to` auf die Home-Sei
 ## Diskussion der Ergebnisse
 Im großen und ganzen muss man sagen, dass das Projekt eine sehr schöne Abwechslung war und mir persönlich Spaß gemacht hat, auch wenn hin und wieder die ein oder anderen Fehler aufgetreten sind. Einige davon waren folgende:
 
-- C\# - WPF-App: Icon konnte nicht geladen werden, da das Bild in dessen Eigenschaften nicht als "Ressource" angegeben war. Lösung --> Rechtsklick auf die png-Datei > Eigenschaften >  ![[Pasted image 20230516184632.png]]
+- C\# - WPF-App: Icon konnte nicht geladen werden, da das Bild in dessen Eigenschaften nicht als "Ressource" angegeben war. Lösung --> Rechtsklick auf die png-Datei > Eigenschaften >  (./Images/31_img.png)
 
 - React - Web-App: HTTP-Anfragen wurden von Cross-Origin-Header-Fehlern blockiert. Dafür musst man die Annotation `CrossOrigin("*")` in SpringBoot einfügen damit dieses Problem behoben wird. Der * sorgt dafür, dass bei jeder Domäne, die eine HTTP-Request über die Web-App sendet, akzeptiert wird.
 
-- C\# - WPF-App: Durch einen Case-Insensetive Fehler konnten die Daten mit der PUT und POST-Request zwar in die Datenbank gespeichert werden, aber alle Werte waren `null`. Dieser Fehler konnte glücklicher Weise mit einer Zeile Code in der `application.properties`-Datei behoben werden. ![[Pasted image 20230522150159.png]]
+- C\# - WPF-App: Durch einen Case-Insensetive Fehler konnten die Daten mit der PUT und POST-Request zwar in die Datenbank gespeichert werden, aber alle Werte waren `null`. Dieser Fehler konnte glücklicher Weise mit einer Zeile Code in der `application.properties`-Datei behoben werden.
+(./Images/38_img.png)
 
 Natürlich könnte man diese gesamte Projekt noch um einiges weiter ausbauen. Beispielsweise könnte man noch andere HTTP-Methode implementieren, die WPF-App schöner gestalten oder die Web-App um sehr viele Sachen erweitern. Natürlich kann man mit den Technolgien, die hier verwendet wurden, sehr viel komplexere und kompliziertere Dinge umgesetzt werden. Jedoch genügt laut den verlangten Anforderungen ein trivialeres Beispiel, was auch gut so ist, denn somit bekommt man schon einmal ein Gefühl dafür, wie das Zusammenspiel der einzelnen Komponenten so funktioniert. Außerdem wurde uns in Sachen Server und Web-App einige Freiheit gewährt, deshalb habe ich mich dazu entschlossen React etwas genauer kennenzulernen und als Frontend-Framework einzusetzen. Eine weitere Vorgabe war es auch in Markdown zu kommentieren, am Anfang des Projekts war ich davon nicht so begeistert, doch je mehr ich das Projekt kommenterte, umso besser gefiel es mir Markdown zu verwenden. Zusammenfassend lässt sich jetzt noch sagen, dass die Umsetzung dieses Projekts ohne allzu großes Kopfzerbrechen erfolgreich durchgeführt wurde.
 
