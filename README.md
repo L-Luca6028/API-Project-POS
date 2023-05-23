@@ -15,7 +15,7 @@ Meine API ist eine ToDo-API. Der Sinn dieser besteht daraus, dass ich meine wich
 
 ## 2. Softwareaufbau
 #### Übersichtsdiagramm
-![Übersichtsdiagramm](diagramm.png)
+![Übersichtsdiagramm](./Images/imgUebDiag.png)
 
 #### Verteilungsdiagramm
 ![Verteilungsdiagramm](verteilungsdiagramm.png)
