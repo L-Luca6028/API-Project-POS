@@ -133,7 +133,7 @@ Die HTTP-Methoden in React sind mit dem HTTP-Client axios realisiert worden. Dam
 
 4. Die DELETE-Methode ![image](./Images/17_img.png)<br>
   Die `deleteTodo`-Funktion löscht das Objekt mir der entsprechenden `id` mit `axios.delete` und wird dann ausgeführt wenn der Löschknopf gedrückt wird:<br>
-  ![image](./Images/18_img.png)<br>
+  ![image](./Images/39_img.png)<br>
    `onClick` sorgt dafür das die Funktion ausgeführt wird. Dabei wird die `id` des `todos`-Objekt als Parameter mitgegeben.
    Mit `loadTodos` wird die Seite neu geladen und das gelöschte Objekt wird nicht mehr angezeigt und ist aus der Datenbank gelöscht worden.
 
