@@ -15,7 +15,7 @@ Meine API ist eine ToDo-API. Der Sinn dieser besteht daraus, dass ich meine wich
 
 ## 2. Softwareaufbau
 #### Übersichtsdiagramm
-![Übersichtsdiagramm](./Images/imgUebDiag.png)
+![Übersichtsdiagramm](./Images/01_imgUebDiag.png)
 
 #### Verteilungsdiagramm
 ![Verteilungsdiagramm](./Images/02_imgUebDiag.png)
@@ -25,8 +25,7 @@ Meine API ist eine ToDo-API. Der Sinn dieser besteht daraus, dass ich meine wich
 #### 2.1.1 SpringBoot-Anwendung - Server
 Spring Boot wird benötigt damit ein Client (in meinem Fall die WPF-Anwendung und die React-App) Daten an die Datenbank senden und empfangen kann. Das Senden und Empfangen von Daten erfolgt über HTTP-Methoden. Der Client schickt eine HTTP-Request an SpringBoot, danach verarbeitet SpringBoot die gesendete Request mithilfe von REST-Endpoints. Diese Endpoints haben wiederum Zugriff auf die Datenbank und können somit die Daten in der Datenbank an den Client schicken.
 
-Die Projekthierarchie:
-
+Die Projekthierarchie:<br>
 ![image](./Images/03_img.png)
 
 
@@ -39,23 +38,22 @@ Dabei ist die Annotation `@SpringBootApplication` anzufügen, damit das Java-Pro
 ![image](./Images/05_img.png)
 
 3. Die `ToDoController`-Klasse. Diese Klasse ist quasi das Herzstück der Spring-Applikation und  nimmt Anfragen von den Clients entgegen, verarbeitet diese und sendet die entsprechende Antwort zurück. Diese Klasse ist der Vermittler zwischen Client und der Anwendung und steuert den Ablauf der Abfragen.
-![image](./Images/06_img.png)
-
+![image](./Images/06_img.png)<br>
 Die Annotation `@RestController` legt diese Klasse als jene fest, die die HTTP-Request handlet. `@CrossOrigin` wird benötigt, damit das Senden und Empfangen von Daten mit dem axios-HTTP-Client möglich ist (Mehr dazu in "Punkt 2.2.1.1 Aufsetzen eines React Projekts") und kein Cross-Origin-Header-Fehler auftritt. Der * in der Klammer bewirkt, dass egal von welcher Domäne aus gesendet wird, kein Cross-Origin-Header-Fehler geworfen wird. Des Weiteren wird ein `repository`-Objekt der `ToDoRepository` erstellt, welches in den Endpoints die benötigten Funktionen aufrufen kann.
    
-Der GET-Endpoint:
-![image](./Images/07_img.png)
+Der GET-Endpoint:<br>
+![image](./Images/07_img.png)<br>
 `@RequestMapping` informiert darüber, dass der folgende Code eine GET-Methode handlen soll. Unter dem danebenstehenden Pfad "/ToDos/all" können alle ToDo-Objekte abgerufen werden. Das anzeigen aller Objekt wird von `repository.findAll()` übernommen.
    
-Der POST-Endpoint:
-![image](./Images/08_img.png)
+Der POST-Endpoint:<br>
+![image](./Images/08_img.png)<br>
 `@PostMapping` informiert darüber, dass der folgende Code eine POST-Methode handlen soll. Unter dem danebenstehenden Pfad "/ToDos/save" kann ein neues ToDo-Objekt in die Datenbank gespeichert werden. Die `@RequstBody`-Annotation wird verwendet, um die Eingabedaten einer HTTP-Anfrage zu erhalten und sie in ein entsprechendes Objekt umzuwandeln. `repository.save(newToDo)` speichert das neue ToDo-Objekt in die Datenbank.
    
 Der PUT-Endpoint: ![image](./Images/09_img.png)
 `@PutMapping` informiert darüber, dass der folgende Code eine PUT-Methode handlen soll. Unter dem danebenstehenden Pfad "/ToDos/{id}" werden die alten Werte des ToDo-Objekts mit den neuen Werten, die die PUT-Methode sendet, überschrieben. Das {id} im Pfad stellt die Id des Objektes in der Datenbank dar, von dem die Werte geändert werden sollen. Die `@PathVariable`-Annotation wird verwendet, um Teile einer URL-Adresse zu extrahieren und als Parameter in einer Spring-Boot-Methode zu verwenden, also in desem Fall die Id. `repository.findById(id)`  sorgt dafür, dass das Objekt, das geändert werden soll, per Id gefunden wird, die dazugehörigen Werte schlussendlich ändert und in die Datenbank speichert.
    
-Der DELETE-Endpoint:
-![image](./Images/10_img.png)
+Der DELETE-Endpoint:<br>
+![image](./Images/10_img.png)<br>
 `@DeleteMapping` informiert darüber, dass der folgende Code eine DELETE-Methode handlen soll. Unter dem danebenstehenden Pfad "/ToDos/{id}" wird das ToDo-Objekt mit der im Pfad stehenden Id aus der Datenbank gelöscht. Für das Löschen aus der Datenbank sorgt `repository.deleteById(id)`.
 
 4. Das `ToDoRepository`-Interface. Das Repository-Interface steht für eine Komponente, die für den Zugriff auf eine Datenbank oder eine andere Datenquelle verantwortlich ist. Sie stellt eine Abstraktionsschicht zwischen der Datenbank und der restlichen Anwendung bereit. 
@@ -64,50 +62,52 @@ Diese Klasse greift mithilfe der `MongoRepository`-Schnittstelle auf eine MongoD
    
 5. Die `application.properties`-Datei ist eine Konfigurationsdatei, inder man Einstellungen und Eigenschaften für die Anwendung festlegt. Beispiele für Konfigurationsoptionen sind Serverkonfigurationen (z.B. den Server-Port) oder Datenbankunfigurationen (Verbindung zur Datenbank). ![image](./Images/12_img.png)
 
+<hr>
 
 Damit jedoch alle gezeigten Komponenten zusammenarbeiten können, müssen sogenannte Dependencies in einer `pom.xml`-Datei eingebunden sein. Die `pom.xml`-Datei enthält Informationen über das Projekt und seine Dependencies sowie die Build-Konfiguration. Es ermöglicht die Integration von Spring-Modulen und anderen Bibliotheken, um die Entwicklung von Spring-Anwendungen zu erleichtern. 
-![image](./Images/13_img.png)
+![image](./Images/13_img.png)<br>
 Die obigen Dependencies werden benötigt, damit MongoDB, aber auch SpringBoot gemeinsam funktioniert. 
 
 <hr>
 
-**_Actuator_**
+**_Actuator_**<br>
 In den Vorgaben für die Umsetzung des Projektes ist gefordert, dass der Server einen "Health"-Status bereitstellen soll. Um diese Anforderungen zu erfüllen kommt der Actuator ins Spiel. Dieser ermöglicht es mithilfe von REST-Endpunkten, wichtige Informationen über die laufende Anwendung bereitzustellen. Eine Information darunter ist "Health", die es ermöglicht nachzusehen ob die Anwendung erfolgreich gestartet wurde. Man kann den Status folgendermaßen Prüfen:
 
-Im Browser mit oben gezeigten Pfad.
-(./Images/35_img.png)
+Im Browser mit oben gezeigten Pfad.<br>
+![image](./Images/35_img.png)
 
-Oder in Insomnia bzw. in Postman.
-(./Images/36_img.png)
+Oder in Insomnia bzw. in Postman.<br>
+![image](./Images/36_img.png)
 
 #### 2.1.2. MongoDB Atlas - Datenbank
 Für mein kleines Projekt habe ich mich für MongoDB als Datenbank entschieden. Da jedoch nicht gewollt ist, dass die Datenbank auf einem lokalen Gerät abgelegt ist, habe ich mich dazu entschieden MongoDB Atlas zu verwenden. Atlas bietet den großen Vorteil, dass meine Datenbank rund um die Uhr online ist und ich somit jeder Zeit Daten senden und empfangen kann.
 
 Damit sich der Client überhaupt zur Datenbank verbinden kann muss in der `application.properties`-Datei der SpringBoot-Anwendung folgende Zeile Code hinein:
-(./Images/37_img.png)
+![image](./Images/37_img.png)
 `spring.data.mongodb.uri` benötigt die URL-von dem MonoDB Atlas Cluster. Diesen Link kann man einfach aus der GUI von Atlas kopieren.
-(./Images/33_img.png)
+![image](./Images/33_img.png)
 
 So sieht die Datenbank in der Atlas-GUI aus. Ein Client kann diese Daten abfragen sowie auch bearbeiten und Löschen.
-(./Images/34_img.png)
+![image](./Images/34_img.png)
 
+<hr>
 
 ### 2.2. Beschreibung der Software - Clients
 #### 2.2.1 Web-App mit React
 ##### 2.2.1.1. Aufsetzten eines React Projekts
 _Alle diese Installationen sind im Terminal in Visual Studio Code erfolgt._
 Als erstes muss man ein React-Projekt erstellen:
-(./Images/27_img.png)
+![image](./Images/27_img.png)
 
 Damit man HTTP-Methoden in React durchführen kann installiere ich noch einen HTTP-Client für den Browser. Dieser Client trägt den Namen "axios" und mit dessen Hilfe können sämtliche HTTP-Methoden realisiert werden:
-(./Images/32_img.png)
+![image](./Images/32_img.png)
 
 Damit sich die einzelen Komponenten erreichen können benötigt man folgendes Paket:
-(./Images/30_img.png)
+![image](./Images/30_img.png)
 
 Damit man die Web-App gut designen kann sollte man auch noch Bootstrap installieren:
-(./Images/28_img.png)
-(./Images/29_img.png)
+![image](./Images/28_img.png)
+![image](./Images/29_img.png)
 
 
 ##### 2.2.1.2. HTTP-Methoden
@@ -125,25 +125,30 @@ Die HTTP-Methoden in React sind mit dem HTTP-Client axios realisiert worden. Dam
    In der `onSubmit`-Funktion wird  `e.preventDefault()` aufgerufen, um das Standardverhalten des Formulars zu verhindern, damit die Seite nicht neu geladen wird. Mit `axios.post` werden die Daten des neuen `todos`-Objekt an die API geschickt.
 
 3. PUT-Methode ![image](./Images/16_img.png)
-   Die meisten Sachen unterscheiden sich nicht von der POST-Methode. Der `useParams`-Hook erlaubt den Zugriff auf den Wert diese Parameters, in diesem Fall `id`, wenn in der Route eine dynamische Parameterplatzhalter festgelegt hast, z. B. `"/todos/:id"`. Das würde so aussehen:![image](./Images/18_img.png)
+   Die meisten Sachen unterscheiden sich nicht von der POST-Methode. Der `useParams`-Hook erlaubt den Zugriff auf den Wert diese Parameters, in diesem Fall `id`, wenn in der Route eine dynamische Parameterplatzhalter festgelegt hast, z. B. `"/todos/:id"`. Das würde so aussehen:<br>
+   ![image](./Images/18_img.png)<br>
    Auf Routes wird später eingegangen.
    Die `onSubmit`-Funktion unterscheidet sich mit `axios.put` gegenüber der `onSubmit`-Funktion bei der POST-Methode. Aber es wird auch im angegebenen Pfad zur API die `id`-Variable angefügt. Das hat den Grund, dass es die `id` des `todos`-Objektes, welches geändert werden soll, sein muss, damit dieses Objekt überhaupt bearbeitet werden kann.
    Die `loadTodo`-Funktion beinhaltet die GET-Methode, jedoch eine andere als zuvor beschrieben. Bei dieser ist es der Fall, das nur das Objekt mit der passenden `id` von der API abgerufen wird. Der Grund dafür ist, dass wenn das Objekt geändert werden soll, dann müssen alle Attribute dieses `todos`-Objekts in die Eingabefelder hineinkommen.
 
 4. Die DELETE-Methode ![image](./Images/17_img.png)
-  Die `deleteTodo`-Funktion löscht das Objekt mir der entsprechenden `id` mit `axios.delete` und wird dann ausgeführt wenn der Löschknopf gedrückt wird:![image](18_img.png)
+  Die `deleteTodo`-Funktion löscht das Objekt mir der entsprechenden `id` mit `axios.delete` und wird dann ausgeführt wenn der Löschknopf gedrückt wird:<br>
+  ![image](18_img.png)<br>
    `onClick` sorgt dafür das die Funktion ausgeführt wird. Dabei wird die `id` des `todos`-Objekt als Parameter mitgegeben.
    Mit `loadTodos` wird die Seite neu geladen und das gelöschte Objekt wird nicht mehr angezeigt und ist aus der Datenbank gelöscht worden.
-   
+
+<hr>
+
 ##### 2.2.1.3. React-Router
-React Router wird dazu verwendet um via URL zu einer anderen Seite zu gelangen. Beispielsweise kann man von der `App.js` Datei zur `Home.js`-Datei mithilfe von `/home`  gelangen: ![image](19_img.png)
+React Router wird dazu verwendet um via URL zu einer anderen Seite zu gelangen. Beispielsweise kann man von der `App.js` Datei zur `Home.js`-Datei mithilfe von `/home`  gelangen:<br>
+![image](19_img.png)<br>
 Wie man im obigen Screenshot erkennen kann befinden sich im `BrowserRouter` die `Routes` und darin befinden sich wiederum mehrere `Route`-Elemente. Bei `exact path` trägt man den Pfad ein, unter dem man die Seite, die in `element` verlinkt ist, erreicht.
 
-Das Verwenden von React Router bietet noch einen Vorteil, man kann nämlich ein `Link`-Element erstellen, das auf die gewünschte Seite verweist. Der `Link`  wird statt dem `href="URL"` bei internen Pfaden verwendet.
-![image](./Images/20_img.png)
+Das Verwenden von React Router bietet noch einen Vorteil, man kann nämlich ein `Link`-Element erstellen, das auf die gewünschte Seite verweist. Der `Link`  wird statt dem `href="URL"` bei internen Pfaden verwendet.<br>
+![image](./Images/20_img.png)<br>
 Hier seht man zum Beispiel, dass dieses `Link`-Element mit `to` auf die Home-Seite leitet. Diese Zeile Code befindet sich in der `ToDoAdd.js`-Datei und leitet danach auf die `Home.js`-Datei weiter.
 
-
+<hr>
 
 #### 2.2.2 WPF-App in C\#
 ##### 2.2.2.1. HTTP-Methoden
@@ -169,12 +174,12 @@ Hier seht man zum Beispiel, dass dieses `Link`-Element mit `to` auf die Home-Sei
 ## Diskussion der Ergebnisse
 Im großen und ganzen muss man sagen, dass das Projekt eine sehr schöne Abwechslung war und mir persönlich Spaß gemacht hat, auch wenn hin und wieder die ein oder anderen Fehler aufgetreten sind. Einige davon waren folgende:
 
-- C\# - WPF-App: Icon konnte nicht geladen werden, da das Bild in dessen Eigenschaften nicht als "Ressource" angegeben war. Lösung --> Rechtsklick auf die png-Datei > Eigenschaften >  (./Images/31_img.png)
+- C\# - WPF-App: Icon konnte nicht geladen werden, da das Bild in dessen Eigenschaften nicht als "Ressource" angegeben war. Lösung --> Rechtsklick auf die png-Datei > Eigenschaften >  ![image](./Images/31_img.png)
 
 - React - Web-App: HTTP-Anfragen wurden von Cross-Origin-Header-Fehlern blockiert. Dafür musst man die Annotation `CrossOrigin("*")` in SpringBoot einfügen damit dieses Problem behoben wird. Der * sorgt dafür, dass bei jeder Domäne, die eine HTTP-Request über die Web-App sendet, akzeptiert wird.
 
-- C\# - WPF-App: Durch einen Case-Insensetive Fehler konnten die Daten mit der PUT und POST-Request zwar in die Datenbank gespeichert werden, aber alle Werte waren `null`. Dieser Fehler konnte glücklicher Weise mit einer Zeile Code in der `application.properties`-Datei behoben werden.
-(./Images/38_img.png)
+- C\# - WPF-App: Durch einen Case-Insensetive Fehler konnten die Daten mit der PUT und POST-Request zwar in die Datenbank gespeichert werden, aber alle Werte waren `null`. Dieser Fehler konnte glücklicher Weise mit einer Zeile Code in der `application.properties`-Datei behoben werden.<br>
+![image](./Images/38_img.png)
 
 Natürlich könnte man diese gesamte Projekt noch um einiges weiter ausbauen. Beispielsweise könnte man noch andere HTTP-Methode implementieren, die WPF-App schöner gestalten oder die Web-App um sehr viele Sachen erweitern. Natürlich kann man mit den Technolgien, die hier verwendet wurden, sehr viel komplexere und kompliziertere Dinge umgesetzt werden. Jedoch genügt laut den verlangten Anforderungen ein trivialeres Beispiel, was auch gut so ist, denn somit bekommt man schon einmal ein Gefühl dafür, wie das Zusammenspiel der einzelnen Komponenten so funktioniert. Außerdem wurde uns in Sachen Server und Web-App einige Freiheit gewährt, deshalb habe ich mich dazu entschlossen React etwas genauer kennenzulernen und als Frontend-Framework einzusetzen. Eine weitere Vorgabe war es auch in Markdown zu kommentieren, am Anfang des Projekts war ich davon nicht so begeistert, doch je mehr ich das Projekt kommenterte, umso besser gefiel es mir Markdown zu verwenden. Zusammenfassend lässt sich jetzt noch sagen, dass die Umsetzung dieses Projekts ohne allzu großes Kopfzerbrechen erfolgreich durchgeführt wurde.
 
