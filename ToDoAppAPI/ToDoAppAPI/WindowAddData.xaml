@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoAppAPI"
         mc:Ignorable="d"
-        Title="WindowAddData" Height="375" Width="550">
+        Title="" Height="375" Width="550" Icon="ziele.png">
     <Grid x:Name="WindowAdd" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>

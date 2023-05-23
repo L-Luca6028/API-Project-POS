@@ -4,7 +4,6 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from './sitepages/Home';
 import ToDoAdd from './todopages/ToDoAdd';
 import ToDoDelete from './todopages/ToDoDelete';
-import Navbar from './siteelements/navbar';
 
 function App() {
   return (
