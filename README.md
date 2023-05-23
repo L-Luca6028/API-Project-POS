@@ -1,6 +1,4 @@
-# API-Project-POS
-<hr>
-# TODO-Liste
+# TODO-Liste-API
 ## 1. Einleitung
 Es soll eine Software entwickelt werden, die aus 2 Clients und einem Server besteht. Die beiden Clients sollen über ein **REST-API** mit dem Server kommunizieren. Die API soll auf jeden Fall die **CRUD-Operationen** (Create, Read, Update, Delete) entahlten. In meinem Projekt kamen dabei folgende Technologien zum Einsatz:
 - **_Dokumentation:_**
