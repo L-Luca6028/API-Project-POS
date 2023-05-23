@@ -25,7 +25,6 @@ export default function Home() {
       loadTodos();
     }
 
-
     // Fürs öffnen des Accordions
     const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -43,8 +42,8 @@ export default function Home() {
               <div className="accordion m-1" id="accordionExample">
                 <div className="accordion-item">
                   <h2 className="accordion-header">
-                    <button className="accordion-button collapsed" type="button" onClick={toggleCollapse}>
-                    {todo.priority}. {todo.whatToDo}
+                    <button className={`accordion-button ${isCollapsed ? '' : 'collapsed'}`} type="button" onClick={toggleCollapse}>
+                      {todo.priority}. {todo.whatToDo}
                     </button>
                   </h2>
                   <div id="collapseOne" className={`accordion-collapse collapse ${isCollapsed ? '' : 'show'}`}>
