@@ -131,9 +131,9 @@ Die HTTP-Methoden in React sind mit dem HTTP-Client axios realisiert worden. Dam
    Die `onSubmit`-Funktion unterscheidet sich mit `axios.put` gegenüber der `onSubmit`-Funktion bei der POST-Methode. Aber es wird auch im angegebenen Pfad zur API die `id`-Variable angefügt. Das hat den Grund, dass es die `id` des `todos`-Objektes, welches geändert werden soll, sein muss, damit dieses Objekt überhaupt bearbeitet werden kann.
    Die `loadTodo`-Funktion beinhaltet die GET-Methode, jedoch eine andere als zuvor beschrieben. Bei dieser ist es der Fall, das nur das Objekt mit der passenden `id` von der API abgerufen wird. Der Grund dafür ist, dass wenn das Objekt geändert werden soll, dann müssen alle Attribute dieses `todos`-Objekts in die Eingabefelder hineinkommen.
 
-4. Die DELETE-Methode ![image](./Images/17_img.png)
+4. Die DELETE-Methode ![image](./Images/17_img.png)<br>
   Die `deleteTodo`-Funktion löscht das Objekt mir der entsprechenden `id` mit `axios.delete` und wird dann ausgeführt wenn der Löschknopf gedrückt wird:<br>
-  ![image](18_img.png)<br>
+  ![image](./Images/18_img.png)<br>
    `onClick` sorgt dafür das die Funktion ausgeführt wird. Dabei wird die `id` des `todos`-Objekt als Parameter mitgegeben.
    Mit `loadTodos` wird die Seite neu geladen und das gelöschte Objekt wird nicht mehr angezeigt und ist aus der Datenbank gelöscht worden.
 
@@ -141,7 +141,7 @@ Die HTTP-Methoden in React sind mit dem HTTP-Client axios realisiert worden. Dam
 
 ##### 2.2.1.3. React-Router
 React Router wird dazu verwendet um via URL zu einer anderen Seite zu gelangen. Beispielsweise kann man von der `App.js` Datei zur `Home.js`-Datei mithilfe von `/home`  gelangen:<br>
-![image](19_img.png)<br>
+![image](./Images/19_img.png)<br>
 Wie man im obigen Screenshot erkennen kann befinden sich im `BrowserRouter` die `Routes` und darin befinden sich wiederum mehrere `Route`-Elemente. Bei `exact path` trägt man den Pfad ein, unter dem man die Seite, die in `element` verlinkt ist, erreicht.
 
 Das Verwenden von React Router bietet noch einen Vorteil, man kann nämlich ein `Link`-Element erstellen, das auf die gewünschte Seite verweist. Der `Link`  wird statt dem `href="URL"` bei internen Pfaden verwendet.<br>
